@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 
 <script src="./vendor/chartJs/Chart.js"></script>
-<script src="./vendor/bootbox/bootbox.all.min.js"></script>
+<script src="./vendor/bootbox/bootbox.min.js"></script>
+<script src="./vendor/bootbox/bootbox.locales.min.js"></script>
 
 <!-- Bootstrap core JavaScript -->
 <script src="./vendor/jquery/jquery-3.3.1.js"></script>

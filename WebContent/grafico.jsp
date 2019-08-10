@@ -39,7 +39,17 @@
 	
 	<script>
 	var chart = new Chart(document.getElementById("pieChart"),{
-		
+		type: 'line',
+		data: {
+			labels: ["Rodrigo", "Alfredo", "Fabiano", "Suami", "Mamede"],
+			datasets: [{
+				label: "My First dataset",
+				backgroundColor: 'rgb(255,99,132)',
+				borderColor: 'rgb(255,99,132)',
+				data: [0, 2, 5, 4, 3]
+			}]
+		},
+		options: {}
 	})
 	</script>
   
