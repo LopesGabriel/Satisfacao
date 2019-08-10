@@ -7,6 +7,15 @@ body {
   overflow-x: hidden;
 }
 
+.load{
+      width:500px;
+      height:500px;
+      position:absolute;
+      top:30%;
+      left:30%;
+      color:blue;
+}
+
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;

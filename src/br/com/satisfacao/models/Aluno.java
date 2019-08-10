@@ -6,6 +6,7 @@ public class Aluno {
 	private String nome;
 	private String matricula;
 	private Integer semestre;
+	private boolean bl_sit;
 
 	// Constructs
 
@@ -51,6 +52,14 @@ public class Aluno {
 
 	public void setSemestre(Integer semestre) {
 		this.semestre = semestre;
+	}
+
+	public boolean isBl_sit() {
+		return bl_sit;
+	}
+
+	public void setBl_sit(boolean bl_sit) {
+		this.bl_sit = bl_sit;
 	}
 
 }
