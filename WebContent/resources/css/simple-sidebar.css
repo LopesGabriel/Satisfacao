@@ -16,6 +16,18 @@ body {
       color:blue;
 }
 
+.page-section{
+	padding: 50px 0;
+}
+
+.Roboto{
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+.Kalam{
+	font-family: 'Kalam', cursive;
+}
+
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;

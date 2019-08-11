@@ -16,5 +16,8 @@
 	
 	<!-- FontAwesome -->
 	<link href="./vendor/fontawesome/css/all.min.css" rel="stylesheet">
+	
+	<!-- Fonts Google -->
+	<link href="https://fonts.googleapis.com/css?family=Kalam|Roboto+Condensed&display=swap" rel="stylesheet">
 
 </head>

@@ -10,19 +10,19 @@ public class Satisfacao {
 	private Integer pontualidade;
 	private Integer clareza;
 	private Integer mtd_avaliacao;
-	private Integer sabedoria;
+	private Integer conhecimento;
 	private Professor professor;
 	private Aluno aluno;
 
 	public Satisfacao() {}
 
 	public Satisfacao(String comentario, Integer pontualidade, Integer clareza, Integer mtd_avaliacao,
-			Integer sabedoria, Professor professor, Aluno aluno) {
+			Integer conhecimento, Professor professor, Aluno aluno) {
 		this.comentario = comentario;
 		this.pontualidade = pontualidade;
 		this.clareza = clareza;
 		this.mtd_avaliacao = mtd_avaliacao;
-		this.sabedoria = sabedoria;
+		this.conhecimento = conhecimento;
 		this.professor = professor;
 		this.aluno = aluno;
 	}
@@ -79,12 +79,12 @@ public class Satisfacao {
 		this.mtd_avaliacao = mtd_avaliacao;
 	}
 
-	public Integer getSabedoria() {
-		return sabedoria;
+	public Integer getConhecimento() {
+		return conhecimento;
 	}
 
-	public void setSabedoria(Integer sabedoria) {
-		this.sabedoria = sabedoria;
+	public void setConhecimento(Integer conhecimento) {
+		this.conhecimento = conhecimento;
 	}
 
 	public Professor getProfessor() {
