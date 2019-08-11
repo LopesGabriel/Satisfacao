@@ -12,4 +12,8 @@ public class DaoVotacao {
 		connection = SingleConnection.getConnection();
 	}
 	
+	public void salvar() {
+		
+	}
+	
 }

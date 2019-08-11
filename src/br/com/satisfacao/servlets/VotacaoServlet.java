@@ -1,6 +1,7 @@
 package br.com.satisfacao.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -40,8 +41,28 @@ public class VotacaoServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Professor> lista = daoProfessor.listarProfessores();
+		List<String> campoConhe = new ArrayList<String>();
+		List<String> campoPont = new ArrayList<String>();
+		List<String> campoClar = new ArrayList<String>();
+		List<String> campoMtda = new ArrayList<String>();
+		List<String> listaReq = new ArrayList<String>();
 		
-		doGet(request, response);
+		for (int i = 0; i < lista.size(); i++) {
+			campoConhe.add(lista.get(i).getMatricula() + "Conhe");
+			campoPont.add(lista.get(i).getMatricula()+ "Pont");
+			campoClar.add(lista.get(i).getMatricula()+ "Clar");
+			campoMtda.add(lista.get(i).getMatricula()+ "Mtda");
+		}
+		
+		for (int i = 0; i < lista.size(); i++) {
+			listaReq.add(campoClar.get(i));
+			listaReq.add(campoPont.get(i));
+			listaReq.add(campoConhe.get(i));
+			listaReq.add(campoMtda.get(i));
+		}
+		
+		
 	}
 
 }
