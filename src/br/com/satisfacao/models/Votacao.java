@@ -2,7 +2,7 @@ package br.com.satisfacao.models;
 
 import java.sql.Timestamp;
 
-public class Satisfacao {
+public class Votacao {
 
 	private Long id;
 	private String comentario;
@@ -14,9 +14,9 @@ public class Satisfacao {
 	private Professor professor;
 	private Aluno aluno;
 
-	public Satisfacao() {}
+	public Votacao() {}
 
-	public Satisfacao(String comentario, Integer pontualidade, Integer clareza, Integer mtd_avaliacao,
+	public Votacao(String comentario, Integer pontualidade, Integer clareza, Integer mtd_avaliacao,
 			Integer conhecimento, Professor professor, Aluno aluno) {
 		this.comentario = comentario;
 		this.pontualidade = pontualidade;
