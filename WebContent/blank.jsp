@@ -9,10 +9,6 @@
 <body>
 
 	<div class="d-flex" id="wrapper">
-
-		<!-- Sidebar -->
-		<jsp:include page="./componentes/sidebar.jsp"></jsp:include>
-		<!-- fim sidebar -->
 	
 		<!-- Page Content -->
 		<div id="page-content-wrapper">

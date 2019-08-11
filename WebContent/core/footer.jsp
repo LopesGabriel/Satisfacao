@@ -13,4 +13,11 @@
     		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
 	});
+	
+	var dialog = bootbox.dialog({
+	    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> Consultando banco de dados</p>',
+	    centerVertical: true,
+	    show: false,
+	    closeButton: false
+	});
 </script>
