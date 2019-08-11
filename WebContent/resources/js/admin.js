@@ -11,22 +11,27 @@ $(document).ready(function(){
 			var count = Object.keys(rs).length;
 			for(var i = 0; i < count; i++){
 				var cor;
+				var title;
 				if(rs[i].sit == true){
 					cor = "text-success";
+					title = "Desabilitar professor";
 				}else{
 					cor = "text-muted";
+					title = "Ativar professor";
 				}
 				var tr = '<tr>'+
 							'<td>'+rs[i].nome+'</td>'+
 							'<td>'+rs[i].matricula+'</td>'+
 							'<td>'+rs[i].disciplina+'</td>'+
-							'<td class="text-center"><a href="#" class="text-decoration-none '+cor+'" onclick="situacao('+rs[i].id+')"><i class="fas fa-user"></i></a></td>'+
+							'<td class="text-center"><a href="#" class="text-decoration-none '+cor+'" data-toggle="tooltip" data-placement="top" title="'+title+'" '+
+							'onclick="situacao('+rs[i].id+')"><i class="fas fa-user"></i></a></td>'+
 						'</tr>';
 				$('#professores').append(tr);
 			}
 		},
 		complete: function(){
 			$body.removeClass("loading");
+			$('[data-toggle="tooltip"]').tooltip();
 		}
 	});
 });
@@ -75,9 +80,6 @@ $('#btn-registrar-professor').on('click', function(){
 				title: 'Erro: '+ xhr.status +' '+ xhr.statusText,
 				message: er
 			});
-		},
-		complete: function(){
-			$body.removeClass("loading");
 		}
 	});
 

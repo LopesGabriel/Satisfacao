@@ -2,6 +2,7 @@
 <!-- JQuery -->
 <script src="./vendor/jquery/jquery-3.3.1.js"></script>
 <!-- Plugins -->
+<script src="./vendor/bootstrap/js/popper.min.js"></script>
 <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="./vendor/chartJs/Chart.js"></script>
 <script src="./vendor/bootbox/bootbox.js"></script>

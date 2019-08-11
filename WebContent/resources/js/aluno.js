@@ -64,9 +64,6 @@ $("#btn-iniciar-avaliacao").on('click', function(){
 				title: 'Erro: '+ xhr.status +' '+ xhr.statusText,
 				message: erro
 			});
-		},
-		complete: function(){
-			$body.removeClass("loading");
 		}
 	});
 
