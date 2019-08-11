@@ -48,11 +48,7 @@ $("#btn-iniciar-avaliacao").on('click', function(){
 					url:'/Satisfacao/votacao',
 					type: 'GET',
 					success: function(rs){
-						switch(rs){
-						case "0":
-							dialog.modal('hide');
-							bootbox.alert("Nao existem professores!");
-						}
+						$(location).attr('href',"/Satisfacao/votacao");
 					}
 				});
 				break;

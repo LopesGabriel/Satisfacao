@@ -3,6 +3,7 @@ package br.com.satisfacao.servlets;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +32,8 @@ public class VotacaoServlet extends HttpServlet {
 		}else {
 			request.setAttribute("professores", lista);
 			String destino = "questionario.jsp";
-			response.sendRedirect(destino);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(destino);
+			dispatcher.forward(request, response);
 			return;
 		}
 		
