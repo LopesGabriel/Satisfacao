@@ -50,14 +50,15 @@ $("#btn-iniciar-avaliacao").on('click', function(){
 				bootbox.alert("Erro ao salvar dados.");
 				break;
 			case "1":
-				bootbox.alert("Dados salvos no banco de dados.");
+				window.location.pathname = "/Satisfacao/questionario.jsp";
 				break;
 			case "2":
-				bootbox.alert("Você já realizou uma avaliação!");
+				window.location.pathname = "/Satisfacao/grafico.jsp";
 				break;
 			}
 		},
 		error: function(xhr, er){
+			dialog.modal('hide');
 			bootbox.alert({
 				size: 'small',
 				title: 'Erro: '+ xhr.status +' '+ xhr.statusText,

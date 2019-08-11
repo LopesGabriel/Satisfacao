@@ -33,13 +33,17 @@ public class IdentificacaoServlet extends HttpServlet {
 		Aluno aluno = new Aluno(nome, matricula, Integer.parseInt(semestre));
 		Aluno validacao = dao.buscarAluno(aluno);
 		
-		if(validacao == null) {
-			retorno = dao.salvar(aluno);
-		}
-		
-		if(validacao.isBl_sit()) {
-			response.getWriter().write("2");
-			return;
+		try {
+			if(validacao == null) {
+				retorno = dao.salvar(aluno);
+			}
+			
+			if(validacao.isBl_sit()) {
+				response.getWriter().write("2");
+				return;
+			}
+			
+		}catch(NullPointerException e) {
 		}
 		
 		if(retorno == "1") {
@@ -49,7 +53,7 @@ public class IdentificacaoServlet extends HttpServlet {
 		}
 		
 		response.getWriter().write(retorno);
-		
+		return;
 	}
 
 }
