@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `satisfacao` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `satisfacao` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `satisfacao`;
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `tb_votos`;
 CREATE TABLE `tb_votos` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `dt_incl` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `comentario` text,
+  `comentario` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `pontualidade` tinyint(4) NOT NULL,
   `clareza` tinyint(4) NOT NULL,
   `mtd_avaliacao` tinyint(4) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `tb_votos` (
   KEY `alunofk_idx` (`alunoid`),
   CONSTRAINT `alunofk` FOREIGN KEY (`alunoid`) REFERENCES `tb_aluno` (`id`),
   CONSTRAINT `proffk` FOREIGN KEY (`profid`) REFERENCES `tb_professor` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +52,4 @@ CREATE TABLE `tb_votos` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-11 11:35:23
+-- Dump completed on 2019-08-11 14:21:19
