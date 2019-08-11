@@ -15,7 +15,6 @@
 		<!-- fim sidebar -->
 	
 		<!-- Page Content -->
-		<div class="load align-middle text-center"><i class="fas fa-cog fa-spin fa-5x"></i></div>
 		<div id="page-content-wrapper">
 	
 			<!-- Header -->
