@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -35,36 +38,34 @@
 				  <div class="card-body">
 				    <h5 class="card-title">Qual nota você daria para o professor(a) no quisito de pontualidade?</h5>
 				    <ul class="list-group mb-4 mt-4">
-						<li class="list-group-item">
-							<p class="text-uppercase text-center"><b>Roberto</b></p>
-							<hr>
-							<div class="d-flex justify-content-around">
-								<div class="custom-control custom-radio custom-control-inline" style="cursor:pointer">
-									<input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-									<label style="cursor:pointer" class="custom-control-label" for="customRadioInline1">1</label>
+				    	<c:forEach items="${professores}" var="professor">
+							<li class="list-group-item">
+								<p class="text-uppercase text-center"><b><c:out value="${professor.nome}"></c:out></b></p>
+								<hr>
+								<div class="d-flex justify-content-around">
+									<div class="custom-control custom-radio custom-control-inline" style="cursor:pointer">
+										<input type="radio" id="customRadioInline1" name="${professor.matricula}Pont" class="custom-control-input">
+										<label style="cursor:pointer" class="custom-control-label" for="customRadioInline1">1</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline" style="cursor:pointer">
+										<input type="radio" id="customRadioInline2" name="${professor.matricula}Pont" class="custom-control-input">
+										<label style="cursor:pointer" class="custom-control-label" for="customRadioInline2">2</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline" style="cursor:pointer">
+										<input type="radio" id="customRadioInline3" name="${professor.matricula}Pont" class="custom-control-input">
+										<label style="cursor:pointer" class="custom-control-label" for="customRadioInline3">3</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline" style="cursor:pointer">
+										<input type="radio" id="customRadioInline4" name="${professor.matricula}Pont" class="custom-control-input">
+										<label style="cursor:pointer" class="custom-control-label" for="customRadioInline4">4</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline" style="cursor:pointer">
+										<input type="radio" id="customRadioInline5" name="${professor.matricula}Pont" class="custom-control-input">
+										<label style="cursor:pointer" class="custom-control-label" for="customRadioInline5">5</label>
+									</div>
 								</div>
-								<div class="custom-control custom-radio custom-control-inline" style="cursor:pointer">
-									<input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-									<label style="cursor:pointer" class="custom-control-label" for="customRadioInline2">2</label>
-								</div>
-								<div class="custom-control custom-radio custom-control-inline" style="cursor:pointer">
-									<input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
-									<label style="cursor:pointer" class="custom-control-label" for="customRadioInline3">3</label>
-								</div>
-								<div class="custom-control custom-radio custom-control-inline" style="cursor:pointer">
-									<input type="radio" id="customRadioInline4" name="customRadioInline1" class="custom-control-input">
-									<label style="cursor:pointer" class="custom-control-label" for="customRadioInline4">4</label>
-								</div>
-								<div class="custom-control custom-radio custom-control-inline" style="cursor:pointer">
-									<input type="radio" id="customRadioInline5" name="customRadioInline1" class="custom-control-input">
-									<label style="cursor:pointer" class="custom-control-label" for="customRadioInline5">5</label>
-								</div>
-							</div>
-						</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Morbi leo risus</li>
-						<li class="list-group-item">Porta ac consectetur ac</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+							</li>
+						</c:forEach>
 					</ul>
 					<h5 class="card-title">Qual nota você daria para o professor(a) no quisito de clareza?</h5>
 					<h5 class="card-title">Qual nota você daria para o professor(a) quanto ao seu método avaliativo?</h5>

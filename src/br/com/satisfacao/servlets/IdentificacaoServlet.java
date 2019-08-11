@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.satisfacao.dao.DaoAluno;
+import br.com.satisfacao.dao.DaoProfessor;
 import br.com.satisfacao.models.Aluno;
 
 @WebServlet("/identificacao")
 public class IdentificacaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DaoAluno dao = new DaoAluno();
+	private DaoProfessor daoProfessor = new DaoProfessor();
        
     public IdentificacaoServlet() {
         super();

@@ -44,25 +44,28 @@ $("#btn-iniciar-avaliacao").on('click', function(){
 		beforeSend: function(){
 			dialog.modal('show');
 		},
-		success: function(rs){
-			switch(rs){
+		success: function(response){
+			switch(response){
 			case "0":
-				bootbox.alert("Erro ao salvar dados.");
+				bootbox.alert("Erro interno, tente novamente mais tarde!");
 				break;
 			case "1":
-				window.location.pathname = "/Satisfacao/questionario.jsp";
+				$.ajax({
+					url:'/Satisfacao/votacao',
+					type: 'GET'
+				});
 				break;
 			case "2":
 				window.location.pathname = "/Satisfacao/grafico.jsp";
 				break;
 			}
 		},
-		error: function(xhr, er){
+		error: function(xhr, erro){
 			dialog.modal('hide');
 			bootbox.alert({
 				size: 'small',
 				title: 'Erro: '+ xhr.status +' '+ xhr.statusText,
-				message: er
+				message: erro
 			});
 		}
 	});

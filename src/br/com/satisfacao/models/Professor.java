@@ -7,17 +7,15 @@ public class Professor {
 	private String matricula;
 	private boolean ativo;
 	private String disciplina;
-	private String img;
 
 	// Constructs
 
 	public Professor() {}
 
-	public Professor(String nome, String matricula, String disciplina, String img) {
+	public Professor(String nome, String matricula, String disciplina) {
 		this.nome = nome;
 		this.matricula = matricula;
 		this.disciplina = disciplina;
-		this.img = img;
 	}
 
 	// Any methods
@@ -62,14 +60,6 @@ public class Professor {
 
 	public void setDisciplina(String disciplina) {
 		this.disciplina = disciplina;
-	}
-
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
 	}
 
 }
