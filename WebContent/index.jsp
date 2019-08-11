@@ -7,7 +7,7 @@
 	<!-- fim head -->
 
 <body>
-
+	<div class="carregando"></div>
 	<div class="d-flex" id="wrapper">
 
 		<!-- Sidebar -->

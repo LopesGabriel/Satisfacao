@@ -35,7 +35,8 @@ $("#btn-iniciar-avaliacao").on('click', function(){
 		type: 'POST',
 		data: $.param(params),
 		beforeSend: function(){
-			dialog.modal('show');
+			$body = $("body");
+			$body.addClass("loading");
 		},
 		success: function(response){
 			switch(response){
@@ -61,12 +62,15 @@ $("#btn-iniciar-avaliacao").on('click', function(){
 			}
 		},
 		error: function(xhr, erro){
-			dialog.modal('hide');
+			$body.removeClass("loading");
 			bootbox.alert({
 				size: 'small',
 				title: 'Erro: '+ xhr.status +' '+ xhr.statusText,
 				message: erro
 			});
+		},
+		complete: function(){
+			$body.removeClass("loading");
 		}
 	});
 

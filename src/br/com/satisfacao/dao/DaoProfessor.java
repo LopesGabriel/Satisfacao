@@ -83,4 +83,29 @@ public class DaoProfessor {
 		return prof;
 	}
 	
+	public String atualizar(Professor p) {
+		String retorno = "1";
+		String sql = "Update tb_professor Set flg_ativo = ? Where id = " + p.getId();
+		try {
+			PreparedStatement st = connection.prepareStatement(sql);
+			st.setBoolean(1, p.isAtivo());
+			st.execute();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			retorno = "0";
+			try {
+				connection.rollback();
+			}catch(SQLException e1) {
+				e.printStackTrace();
+			}
+		}finally {
+			try {
+				connection.commit();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return retorno;
+	}
+	
 }
