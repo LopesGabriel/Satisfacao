@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.satisfacao.jdbc.SingleConnection;
-import br.com.satisfacao.models.Aluno;
 import br.com.satisfacao.models.Professor;
 
 public class DaoProfessor {
@@ -43,7 +42,7 @@ public class DaoProfessor {
 	}
 	
 	public List<Professor> listarProfessores(){
-		List<Professor> lista = new ArrayList<>();
+		List<Professor> lista = new ArrayList<Professor>();
 		String sql = "SELECT * from tb_professor";
 		try {
 			PreparedStatement st = connection.prepareStatement(sql);
@@ -57,8 +56,6 @@ public class DaoProfessor {
 				professor.setDisciplina(rs.getString("disciplina"));
 				lista.add(professor);
 			}
-			rs.close();
-			st.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 			return null;

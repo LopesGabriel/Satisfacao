@@ -45,7 +45,14 @@ $("#btn-iniciar-avaliacao").on('click', function(){
 			case "1":
 				$.ajax({
 					url:'/Satisfacao/votacao',
-					type: 'GET'
+					type: 'GET',
+					success: function(rs){
+						switch(rs){
+						case "0":
+							dialog.modal('hide');
+							bootbox.alert("Nao existem professores!");
+						}
+					}
 				});
 				break;
 			case "2":
