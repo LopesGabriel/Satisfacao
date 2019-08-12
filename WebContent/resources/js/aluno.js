@@ -48,7 +48,7 @@ $("#btn-iniciar-avaliacao").on('click', function(){
 					url:'/Satisfacao/votacao',
 					type: 'GET',
 					success: function(rs){
-						$(location).attr('href',"/Satisfacao/votacao");
+						$(location).attr('href',"/Satisfacao/questionario.jsp");
 					}
 				});
 				break;

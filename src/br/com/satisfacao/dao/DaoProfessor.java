@@ -63,6 +63,28 @@ public class DaoProfessor {
 		return lista;
 	}
 	
+	public List<Professor> listarProfessoresAtivos(){
+		List<Professor> lista = new ArrayList<Professor>();
+		String sql = "SELECT * from tb_professor Where flg_ativo = 1";
+		try {
+			PreparedStatement st = connection.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				Professor professor = new Professor();
+				professor.setId(rs.getLong("id"));
+				professor.setNome(rs.getString("nome"));
+				professor.setAtivo(rs.getBoolean("flg_ativo"));
+				professor.setMatricula(rs.getString("matricula"));
+				professor.setDisciplina(rs.getString("disciplina"));
+				lista.add(professor);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return lista;
+	}
+	
 	public Professor buscarProfessor(Professor professor) {
 		Professor prof = null;
 		String sql = "SELECT * FROM tb_professor Where id = ?";
