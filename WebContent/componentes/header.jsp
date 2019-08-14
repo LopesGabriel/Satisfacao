@@ -6,6 +6,7 @@
 	</button>
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<a href="/Satisfacao/home"><img alt="Home" src="./resources/img/logo.png"></a>
 		<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 			<li class="nav-item active">
 				<a class="nav-link" href="./admin.jsp">Administração</a>

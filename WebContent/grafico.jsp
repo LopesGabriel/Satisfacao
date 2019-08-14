@@ -61,31 +61,55 @@
 	<!-- fim footer -->
 	
 	<script>
-	var chart = new Chart(document.getElementById("pieChart"),{
-		type: 'pie',
-		data: {
-			labels: ["Rodrigo", "Alfredo", "Fabiano", "Suami", "Mamede"],
-			datasets: [{
-				label: "My First dataset",
-				backgroundColor: [
-	                'rgba(255, 99, 132, 0.7)',
-	                'rgba(54, 162, 235, 0.7)',
-	                'rgba(255, 206, 86, 0.7)',
-	                'rgba(75, 192, 192, 0.7)',
-	                'rgba(153, 102, 255, 0.7)'
-	            ],
-				borderColor: [
-	                '#333',
-	                '#333',
-	                '#333',
-	                '#333',
-	                '#333',
-	            ],
-	            borderWidth: 1,
-				data: [0, 2, 5, 4, 3]
-			}]
-		},
-		options: {}
+	$(document).ready(function(){
+		acao = "mediaProfessor";
+	
+		$.ajax({
+			url: '/Satisfacao/votacao',
+			type: 'POST',
+			data: {acao: acao},
+			success: function(rs){
+				console.log(rs);
+			},
+			error: function(xhr, erro){
+				$body.removeClass("loading");
+				bootbox.alert({
+					size: 'small',
+					title: 'Erro: '+ xhr.status +' '+ xhr.statusText,
+					message: erro
+				});
+			},
+			complete: function(){
+				$body.removeClass("loading");
+			}
+		});
+		
+		var chart = new Chart(document.getElementById("pieChart"),{
+			type: 'pie',
+			data: {
+				labels: ["Rodrigo", "Alfredo", "Fabiano", "Suami", "Mamede"],
+				datasets: [{
+					label: "My First dataset",
+					backgroundColor: [
+		                'rgba(255, 99, 132, 0.7)',
+		                'rgba(54, 162, 235, 0.7)',
+		                'rgba(255, 206, 86, 0.7)',
+		                'rgba(75, 192, 192, 0.7)',
+		                'rgba(153, 102, 255, 0.7)'
+		            ],
+					borderColor: [
+		                '#333',
+		                '#333',
+		                '#333',
+		                '#333',
+		                '#333',
+		            ],
+		            borderWidth: 1,
+					data: [0, 2, 5, 4, 3]
+				}]
+			},
+			options: {}
+		});
 	});
 	</script>
   

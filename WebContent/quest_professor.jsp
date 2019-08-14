@@ -9,7 +9,7 @@
 <div class="col-12 mx-auto">
 	<h3 class="Roboto text-info">Pontualidade do professor:</h3>
 	<!-- Div das opções -->
-	<div id="v1" class="col-12 d-flex justify-content-center mx-auto">
+	<div id="v1" class="col-12 d-flex justify-content-around mx-auto">
 		<div class="form-check form-check-inline">
 			<input class="form-check-input" type="radio" name="pontualidade" id="pontualidade1" value="1">
 			<label class="form-check-label" for="pontualidade1">1</label>
@@ -36,7 +36,7 @@
 <div class="col-12 mx-auto">
 	<h3 class="Roboto text-info">O professor sanou todas as duvidas?</h3>
 	<!-- Div das opções -->
-	<div id="v2" class="col-12 d-flex justify-content-center mx-auto">
+	<div id="v2" class="col-12 d-flex justify-content-around mx-auto">
 		<div class="form-check form-check-inline">
 			<input class="form-check-input" type="radio" name="duvidas" id="duvidas1" value="1">
 			<label class="form-check-label" for="duvidas1">1</label>
@@ -63,7 +63,7 @@
 <div class="col-12 mx-auto">
 	<h3 class="Roboto text-info">Método de avaliação do professor:</h3>
 	<!-- Div das opções -->
-	<div id="v3" class="col-12 d-flex justify-content-center mx-auto">
+	<div id="v3" class="col-12 d-flex justify-content-around mx-auto">
 		<div class="form-check form-check-inline">
 			<input class="form-check-input" type="radio" name="avaliacao" id="avaliacao1" value="1">
 			<label class="form-check-label" for="duvidas1">1</label>
@@ -90,7 +90,7 @@
 <div class="col-12 mx-auto">
 	<h3 class="Roboto text-info">Conhecimento do professor sobre a matéria:</h3>
 	<!-- Div das opções -->
-	<div id="v4" class="col-12 d-flex justify-content-center mx-auto">
+	<div id="v4" class="col-12 d-flex justify-content-around mx-auto">
 		<div class="form-check form-check-inline">
 			<input class="form-check-input" type="radio" name="conhecimento" id="conhecimento1" value="1">
 			<label class="form-check-label" for="conhecimento1">1</label>
