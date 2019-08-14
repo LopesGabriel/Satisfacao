@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.satisfacao.jdbc.SingleConnection;
+import br.com.satisfacao.models.Aluno;
 import br.com.satisfacao.models.Professor;
 
 public class DaoProfessor {
@@ -85,6 +86,28 @@ public class DaoProfessor {
 		return lista;
 	}
 	
+	public List<Professor> listarProfessoresParaVotar(Aluno al){
+		List<Professor> lista = new ArrayList<Professor>();
+		String sql = "SELECT * from tb_professor Where flg_ativo = 1";
+		try {
+			PreparedStatement st = connection.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				Professor professor = new Professor();
+				professor.setId(rs.getLong("id"));
+				professor.setNome(rs.getString("nome"));
+				professor.setAtivo(rs.getBoolean("flg_ativo"));
+				professor.setMatricula(rs.getString("matricula"));
+				professor.setDisciplina(rs.getString("disciplina"));
+				lista.add(professor);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return lista;
+	}
+	
 	public Professor buscarProfessor(Professor professor) {
 		Professor prof = null;
 		String sql = "SELECT * FROM tb_professor Where id = ?";
@@ -130,4 +153,30 @@ public class DaoProfessor {
 		return retorno;
 	}
 	
+	public int numProfessores() {
+		String sql = "Select Count(flg_ativo) as qtd From tb_professor Where flg_ativo = 1";
+		int numProfessor = 0;
+		try {
+			PreparedStatement st = connection.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()) {
+				numProfessor = rs.getInt("qtd");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			}catch(SQLException e1) {
+				e.printStackTrace();
+			}
+		}finally {
+			try {
+				connection.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return numProfessor;
+	}
 }

@@ -49,7 +49,8 @@ public class IdentificacaoServlet extends HttpServlet {
 		if(retorno == "1") {
 			aluno.setBl_sit(false);
 			HttpSession session = request.getSession();
-			session.setAttribute("aluno", aluno);
+			session.removeAttribute("aluno");
+			session.setAttribute("aluno", validacao);
 		}
 		
 		response.getWriter().write(retorno);

@@ -8,6 +8,9 @@ public class SingleConnection {
 	private static final String BANCO = "jdbc:mysql://remotemysql.com:3306/F7d18V9uiJ?autoReconnect=true";
 	private static final String USER = "F7d18V9uiJ";
 	private static final String SENHA = "dTwoCGVeq9";
+/*	private static final String BANCO = "jdbc:mysql://localhost:3306/satisfacao?autoReconnect=true";
+	private static final String USER = "satisfacao";
+	private static final String SENHA = "uniplan";*/
 	private static Connection connection = null;
 
 	static {

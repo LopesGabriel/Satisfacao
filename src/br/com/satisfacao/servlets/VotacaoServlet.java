@@ -10,9 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.satisfacao.dao.DaoProfessor;
+import br.com.satisfacao.dao.DaoVotacao;
+import br.com.satisfacao.models.Aluno;
 import br.com.satisfacao.models.Professor;
+import br.com.satisfacao.models.Votacao;
 
 
 @WebServlet("/votacao")
@@ -41,9 +45,13 @@ public class VotacaoServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		HttpSession session = request.getSession();
+		Aluno aluno = (Aluno) session.getAttribute("aluno");
 		String acao = request.getParameter("acao");
 		String id = request.getParameter("id");
+		Professor p;
+		boolean view = true;
 		
 		// Declaração das variaveis
 		RequestDispatcher dispatcher = null;
@@ -51,19 +59,70 @@ public class VotacaoServlet extends HttpServlet {
 		switch (acao) {
 		case "listarProfessores":
 			List<Professor> lista = dao.listarProfessoresAtivos();
-			request.setAttribute("professores", lista);
-			dispatcher = request.getRequestDispatcher("card_professor.jsp");
+			List<Professor> professoresJaAvaliados = new ArrayList<Professor>();
+			List<Long> jaAvaliados = new DaoVotacao().professoresJaVotados(aluno);
+			for (Long pid : jaAvaliados) {
+				for (Professor pLista : lista) {
+					if(pLista.getId() == pid) {
+						professoresJaAvaliados.add(pLista);
+					}
+				}
+				for (Professor pexcluir : professoresJaAvaliados) {
+					lista.remove(pexcluir);
+				}
+				professoresJaAvaliados.clear();
+			}
+			if(lista.size() > 0) {
+				request.setAttribute("professores", lista);
+				dispatcher = request.getRequestDispatcher("card_professor.jsp");
+			}else {
+				view = false;
+				response.sendRedirect("grafico.jsp");
+			}
+			
+			break;
+		case "numProfessores":
+			view = false;
+			int numProfessor = dao.numProfessores();
+			response.getWriter().write(String.valueOf(numProfessor));
 			break;
 		case "formProfessor":
+			p = new Professor(Long.parseLong(id));
+			p = dao.buscarProfessor(p);
+			request.setAttribute("professor", p);
 			dispatcher = request.getRequestDispatcher("quest_professor.jsp");
+			break;
+		case "avaliar":
+			String pontualidade = request.getParameter("pontualidade");
+			String duvidas = request.getParameter("duvidas");
+			String avaliacao = request.getParameter("avaliacao");
+			String conhecimento = request.getParameter("conhecimento");
+			String comentario = request.getParameter("comentario");
+			p = new Professor(Long.parseLong(id));
+			Votacao av = new Votacao(
+				comentario,
+				Integer.parseInt(pontualidade),
+				Integer.parseInt(duvidas),
+				Integer.parseInt(avaliacao),
+				Integer.parseInt(conhecimento),
+				p,
+				aluno
+			);
+			String resultado = new DaoVotacao().salvar(av);
+			view = false;
+			if(resultado == "1") {
+				response.getWriter().write("1");
+			}else {
+				response.getWriter().write("0");
+			}
+			break;
 		}
-		if(dispatcher != null) {
+		if(dispatcher != null && view) {
 			dispatcher.forward(request, response);
+		}else if(dispatcher == null && !view){
 		}else {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Erro ao processar requisição");
 		}
-		
-		return;
 	}
 
 }
