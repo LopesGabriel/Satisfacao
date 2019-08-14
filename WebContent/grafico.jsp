@@ -63,13 +63,62 @@
 	<script>
 	$(document).ready(function(){
 		acao = "mediaProfessor";
-	
+		var qtd = 0;
+		var media_pon = [];
+		var media_cla = [];
+		var media_mtd = [];
+		var media_conhe = [];
+		
 		$.ajax({
 			url: '/Satisfacao/votacao',
 			type: 'POST',
+			dataType: 'JSON',
 			data: {acao: acao},
 			success: function(rs){
 				console.log(rs);
+				qtd = Object.keys(rs).length;
+				var nomes = "";
+				for(i = 0; i < qtd; i++){
+					nomes += rs[i].nome + ",";
+					media_pon.push(rs[i].media_pont);
+					media_cla.push(rs[i].media_cla);
+					media_mtd.push(rs[i].media_mtd);
+					media_conhe.push(rs[i].media_conhe);
+				}
+				var tamanhoNomes = nomes.length;
+				var nomesFormatado = nomes.substring(0, tamanhoNomes -1);
+				var chart = new Chart(document.getElementById("pieChart"),{
+					type: 'bar',
+					data: {
+						labels: nomesFormatado.split(','),
+						datasets: [{
+							label: "Média da Pontualidade dos professores.",
+							backgroundColor: [
+				                'rgba(255, 99, 132, 0.7)',
+				                'rgba(54, 162, 235, 0.7)',
+				                'rgba(255, 206, 86, 0.7)',
+				                'rgba(75, 192, 192, 0.7)',
+				                'rgba(153, 102, 255, 0.7)'
+				            ],
+							borderColor: [
+				                '#333',
+				                '#333',
+				                '#333',
+				                '#333',
+				                '#333',
+				            ],
+				            borderWidth: 1,
+							data: media_pon
+						}]
+					},
+					options: {
+						scales: {
+					        yAxes: [{
+					            beginAtZero: true
+					        }]
+					    }
+					}
+				});
 			},
 			error: function(xhr, erro){
 				$body.removeClass("loading");
@@ -83,33 +132,7 @@
 				$body.removeClass("loading");
 			}
 		});
-		
-		var chart = new Chart(document.getElementById("pieChart"),{
-			type: 'pie',
-			data: {
-				labels: ["Rodrigo", "Alfredo", "Fabiano", "Suami", "Mamede"],
-				datasets: [{
-					label: "My First dataset",
-					backgroundColor: [
-		                'rgba(255, 99, 132, 0.7)',
-		                'rgba(54, 162, 235, 0.7)',
-		                'rgba(255, 206, 86, 0.7)',
-		                'rgba(75, 192, 192, 0.7)',
-		                'rgba(153, 102, 255, 0.7)'
-		            ],
-					borderColor: [
-		                '#333',
-		                '#333',
-		                '#333',
-		                '#333',
-		                '#333',
-		            ],
-		            borderWidth: 1,
-					data: [0, 2, 5, 4, 3]
-				}]
-			},
-			options: {}
-		});
+
 	});
 	</script>
   

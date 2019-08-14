@@ -117,17 +117,19 @@ public class VotacaoServlet extends HttpServlet {
 			}
 			break;
 		case "mediaProfessor":
+			view = false;
 			List<Professor> profs = dao.listarProfessoresAtivos();
 			List<String> nomes = new ArrayList<String>();
 			List<Double> mediaProfs = new ArrayList<Double>();
 			String json = "";
+			String inicio = "[", fim = "]";
 			for (Professor prof : profs) {
 				List<Double> medias = dao.mediaProfessor(prof);
-				json += "[{\""+prof.getNome()+"\": {\"media_pont\": "+medias.get(0)+", \"media_cla\": "+medias.get(1)+", \"media_mtd\": "+medias.get(2)+", \"media_conhe\": "+medias.get(3)+"}}],";
+				json += "{\"nome\": \""+prof.getNome()+"\", \"media_pont\": "+medias.get(0)+", \"media_cla\": "+medias.get(1)+", \"media_mtd\": "+medias.get(2)+", \"media_conhe\": "+medias.get(3)+"},";
 			}
 			int tamanhoJson = json.length();
 			String JsonFormatado = json.substring(0, tamanhoJson -1);
-			response.getWriter().write(JsonFormatado);
+			response.getWriter().append(inicio+JsonFormatado+fim);
 			
 		}
 		if(dispatcher != null && view) {
