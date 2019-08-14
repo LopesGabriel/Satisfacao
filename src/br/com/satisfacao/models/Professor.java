@@ -11,6 +11,10 @@ public class Professor {
 	// Constructs
 
 	public Professor() {}
+	
+	public Professor(Long id) {
+		this.id = id;
+	}
 
 	public Professor(String nome, String matricula, String disciplina) {
 		this.nome = nome;

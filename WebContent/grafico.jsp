@@ -9,17 +9,9 @@
 <body>
 
 	<div class="d-flex" id="wrapper">
-
-		<!-- Sidebar -->
-		<jsp:include page="./componentes/sidebar.jsp"></jsp:include>
-		<!-- fim sidebar -->
 	
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
-	
-			<!-- Header -->
-			<jsp:include page="./componentes/header.jsp"></jsp:include>
-			<!-- Fim header -->
 	
 			<div class="mt-3 container-fluid">
 				<nav aria-label="breadcrumb">
