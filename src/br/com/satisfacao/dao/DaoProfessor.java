@@ -179,4 +179,35 @@ public class DaoProfessor {
 		}
 		return numProfessor;
 	}
+	
+	public List<Double> mediaProfessor(Professor p) {
+		List<Double> lista = new ArrayList<Double>();
+		Double media_pont = 0.0;
+		Double media_cla = 0.0;
+		Double media_mtd = 0.0;
+		Double media_conhe = 0.0;
+		String sql = "SELECT avg(tb_votos.pontualidade) as media_pont,"
+				+ "avg(tb_votos.clareza) as media_cla,"
+				+ "avg(tb_votos.mtd_avaliacao) as media_mtd,"
+				+ "avg(tb_votos.conhecimento) as media_conhe "
+				+ "from tb_votos where profid = ?;";
+		try {
+			PreparedStatement st = connection.prepareStatement(sql);
+			st.setLong(1, p.getId());
+			ResultSet rs = st.executeQuery();
+			if(rs.next()) {
+				media_pont = rs.getDouble("media_pont");
+				media_cla = rs.getDouble("media_cla");
+				media_mtd = rs.getDouble("media_mtd");
+				media_conhe = rs.getDouble("media_conhe");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		lista.add(media_pont);
+		lista.add(media_cla);
+		lista.add(media_mtd);
+		lista.add(media_conhe);
+		return lista;
+	}
 }

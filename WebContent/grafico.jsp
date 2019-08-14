@@ -26,23 +26,21 @@
 						<div class="card-header">
 							<ul class="nav nav-tabs card-header-tabs">
 								<li class="nav-item">
-									<a class="nav-link active text-secondary" href="#">Pontualidade</a>
+									<a id="pont" class="nav-link active text-secondary" href="#" data-dado="pontualidade">Pontualidade</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-secondary" href="#">Clareza</a>
+									<a id="clar" class="nav-link text-secondary" href="#" data-dado="clareza">Clareza</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-secondary" href="#">Métodos avaliativos</a>
+									<a id="aval" class="nav-link text-secondary" href="#" data-dado="mtdAvaliativo">Métodos avaliativos</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-secondary" href="#">Conhecimento sobre a matéria</a>
+									<a id="conh" class="nav-link text-secondary" href="#" data-dado="conhecimento">Conhecimento sobre a matéria</a>
 								</li>
 						    </ul>
 						</div>
-						<div class="card-body">
-							<canvas id="pieChart"></canvas>
-							<hr>
-							<p class="card-text">Esse gráfico apresenta o desempenho de cada professor quanto a sua pontualidade nas aulas.</p>
+						<div id="chart-place" class="card-body">
+
 						</div>
 						<div class="card-footer text-muted text-center">
 						  Última atualização: 12/08/2019 14:00
@@ -61,32 +59,280 @@
 	<!-- fim footer -->
 	
 	<script>
-	var chart = new Chart(document.getElementById("pieChart"),{
-		type: 'pie',
-		data: {
-			labels: ["Rodrigo", "Alfredo", "Fabiano", "Suami", "Mamede"],
-			datasets: [{
-				label: "My First dataset",
-				backgroundColor: [
-	                'rgba(255, 99, 132, 0.7)',
-	                'rgba(54, 162, 235, 0.7)',
-	                'rgba(255, 206, 86, 0.7)',
-	                'rgba(75, 192, 192, 0.7)',
-	                'rgba(153, 102, 255, 0.7)'
-	            ],
-				borderColor: [
-	                '#333',
-	                '#333',
-	                '#333',
-	                '#333',
-	                '#333',
-	            ],
-	            borderWidth: 1,
-				data: [0, 2, 5, 4, 3]
-			}]
-		},
-		options: {}
+	var dados;
+	var nomes = "";
+	var nomesFormatado;
+	var media_pon = [];
+	var media_cla = [];
+	var media_mtd = [];
+	var media_conhe = [];
+	var canvas = '<canvas id="grafico" class="col-12"></canvas>';
+	$(document).ready(function(){
+		acao = "mediaProfessor";
+		var qtd = 0;
+		
+		$.ajax({
+			url: '/Satisfacao/votacao',
+			type: 'POST',
+			dataType: 'JSON',
+			data: {acao: acao},
+			success: function(rs){
+				dados = rs;
+				qtd = Object.keys(rs).length;
+				for(i = 0; i < qtd; i++){
+					nomes += rs[i].nome + ",";
+					media_pon.push(rs[i].media_pont);
+					media_cla.push(rs[i].media_cla);
+					media_mtd.push(rs[i].media_mtd);
+					media_conhe.push(rs[i].media_conhe);
+				}
+				var tamanhoNomes = nomes.length;
+				nomesFormatado = nomes.substring(0, tamanhoNomes -1);
+				$('#chart-place').append(canvas);
+				var chart = new Chart(document.getElementById("grafico"),{
+					type: 'bar',
+					data: {
+						labels: nomesFormatado.split(','),
+						datasets: [{
+							label: "Média da Pontualidade dos professores.",
+							backgroundColor: [
+				                'rgba(255, 99, 132, 0.7)',
+				                'rgba(54, 162, 235, 0.7)',
+				                'rgba(255, 206, 86, 0.7)',
+				                'rgba(75, 192, 192, 0.7)',
+				                'rgba(153, 102, 255, 0.7)'
+				            ],
+							borderColor: [
+				                '#333',
+				                '#333',
+				                '#333',
+				                '#333',
+				                '#333',
+				            ],
+				            borderWidth: 1,
+							data: media_pon
+						}]
+					},
+					options: {
+						scales: {
+							yAxes:[{
+								display: true,
+								ticks: {
+									suggestedMin: 0,
+									beginAtZero: true
+								}
+							}]
+						}
+					}
+				});
+			},
+			error: function(xhr, erro){
+				$body.removeClass("loading");
+				bootbox.alert({
+					size: 'small',
+					title: 'Erro: '+ xhr.status +' '+ xhr.statusText,
+					message: erro
+				});
+			},
+			complete: function(){
+				$body.removeClass("loading");
+			}
+		});
+
 	});
+
+	$(document).on('click', '#pont', function(){
+		$('#chart-place').empty();
+		$('#pont').removeClass('active');
+		$('#clar').removeClass('active');
+		$('#aval').removeClass('active');
+		$('#conh').removeClass('active');
+		$('#pont').addClass('active');
+		$('#chart-place').append(canvas);
+
+		var chart = new Chart(document.getElementById("grafico"),{
+			type: 'bar',
+			data: {
+				labels: nomesFormatado.split(','),
+				datasets: [{
+					label: "Média da Pontualidade dos professores.",
+					backgroundColor: [
+		                'rgba(255, 99, 132, 0.7)',
+		                'rgba(54, 162, 235, 0.7)',
+		                'rgba(255, 206, 86, 0.7)',
+		                'rgba(75, 192, 192, 0.7)',
+		                'rgba(153, 102, 255, 0.7)'
+		            ],
+					borderColor: [
+		                '#333',
+		                '#333',
+		                '#333',
+		                '#333',
+		                '#333',
+		            ],
+		            borderWidth: 1,
+					data: media_pon
+				}]
+			},
+			options: {
+				scales: {
+					yAxes:[{
+						display: true,
+						ticks: {
+							suggestedMin: 0,
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+
+	});
+
+	$(document).on('click', '#clar', function(){
+		$('#chart-place').empty();
+		$('#pont').removeClass('active');
+		$('#clar').removeClass('active');
+		$('#aval').removeClass('active');
+		$('#conh').removeClass('active');
+		$('#clar').addClass('active');
+		$('#chart-place').append(canvas);
+
+		var chart = new Chart(document.getElementById("grafico"),{
+			type: 'bar',
+			data: {
+				labels: nomesFormatado.split(','),
+				datasets: [{
+					label: "Média da Clareza dos professores.",
+					backgroundColor: [
+		                'rgba(255, 99, 132, 0.7)',
+		                'rgba(54, 162, 235, 0.7)',
+		                'rgba(255, 206, 86, 0.7)',
+		                'rgba(75, 192, 192, 0.7)',
+		                'rgba(153, 102, 255, 0.7)'
+		            ],
+					borderColor: [
+		                '#333',
+		                '#333',
+		                '#333',
+		                '#333',
+		                '#333',
+		            ],
+		            borderWidth: 1,
+					data: media_cla
+				}]
+			},
+			options: {
+				scales: {
+					yAxes:[{
+						display: true,
+						ticks: {
+							suggestedMin: 0,
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+
+	});
+
+	$(document).on('click', '#aval', function(){
+		$('#chart-place').empty();
+		$('#pont').removeClass('active');
+		$('#clar').removeClass('active');
+		$('#aval').removeClass('active');
+		$('#conh').removeClass('active');
+		$('#aval').addClass('active');
+		$('#chart-place').append(canvas);
+
+		var chart = new Chart(document.getElementById("grafico"),{
+			type: 'bar',
+			data: {
+				labels: nomesFormatado.split(','),
+				datasets: [{
+					label: "Média do método de avaliação dos professores.",
+					backgroundColor: [
+		                'rgba(255, 99, 132, 0.7)',
+		                'rgba(54, 162, 235, 0.7)',
+		                'rgba(255, 206, 86, 0.7)',
+		                'rgba(75, 192, 192, 0.7)',
+		                'rgba(153, 102, 255, 0.7)'
+		            ],
+					borderColor: [
+		                '#333',
+		                '#333',
+		                '#333',
+		                '#333',
+		                '#333',
+		            ],
+		            borderWidth: 1,
+					data: media_mtd
+				}]
+			},
+			options: {
+				scales: {
+					yAxes:[{
+						display: true,
+						ticks: {
+							suggestedMin: 0,
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+
+	});
+
+	$(document).on('click', '#conh', function(){
+		$('#chart-place').empty();
+		$('#pont').removeClass('active');
+		$('#clar').removeClass('active');
+		$('#aval').removeClass('active');
+		$('#conh').removeClass('active');
+		$('#conh').addClass('active');
+		$('#chart-place').append(canvas);
+
+		var chart = new Chart(document.getElementById("grafico"),{
+			type: 'bar',
+			data: {
+				labels: nomesFormatado.split(','),
+				datasets: [{
+					label: "Média do conhecimento dos professores.",
+					backgroundColor: [
+		                'rgba(255, 99, 132, 0.7)',
+		                'rgba(54, 162, 235, 0.7)',
+		                'rgba(255, 206, 86, 0.7)',
+		                'rgba(75, 192, 192, 0.7)',
+		                'rgba(153, 102, 255, 0.7)'
+		            ],
+					borderColor: [
+		                '#333',
+		                '#333',
+		                '#333',
+		                '#333',
+		                '#333',
+		            ],
+		            borderWidth: 1,
+					data: media_conhe
+				}]
+			},
+			options: {
+				scales: {
+					yAxes:[{
+						display: true,
+						ticks: {
+							suggestedMin: 0,
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+
+	});
+
 	</script>
   
 </body>
