@@ -26,16 +26,16 @@
 						<div class="card-header">
 							<ul class="nav nav-tabs card-header-tabs">
 								<li class="nav-item">
-									<a class="nav-link active text-secondary" href="#">Pontualidade</a>
+									<a class="nav-link active text-secondary" href="#" data-dado="pontualidade">Pontualidade</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-secondary" href="#">Clareza</a>
+									<a class="nav-link text-secondary" href="#" data-dado="clareza">Clareza</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-secondary" href="#">Métodos avaliativos</a>
+									<a class="nav-link text-secondary" href="#" data-dado="mtdAvaliativo">Métodos avaliativos</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-secondary" href="#">Conhecimento sobre a matéria</a>
+									<a class="nav-link text-secondary" href="#" data-dado="conhecimento">Conhecimento sobre a matéria</a>
 								</li>
 						    </ul>
 						</div>
@@ -113,10 +113,14 @@
 					},
 					options: {
 						scales: {
-					        yAxes: [{
-					            beginAtZero: true
-					        }]
-					    }
+							yAxes:[{
+								display: true,
+								ticks: {
+									suggestedMin: 0,
+									beginAtZero: true
+								}
+							}]
+						}
 					}
 				});
 			},
