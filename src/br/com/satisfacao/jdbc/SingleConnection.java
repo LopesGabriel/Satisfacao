@@ -11,9 +11,9 @@ public class SingleConnection {
 	 * static final String USER = "F7d18V9uiJ"; private static final String SENHA =
 	 * "dTwoCGVeq9";
 	 */
-	private static final String BANCO = "jdbc:mysql://localhost:3306/satisfacao?autoReconnect=true";
-	private static final String USER = "satisfacao";
-	private static final String SENHA = "uniplan";
+	private static final String BANCO = "jdbc:mysql://31.220.62.68:3306/satisfacao";
+	private static final String USER = "gabriel";
+	private static final String SENHA = "Biellindo3-";
 	private static Connection connection = null;
 
 	static {
@@ -27,7 +27,7 @@ public class SingleConnection {
 	private static void conectar() {
 		try {
 			if(connection == null) {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 				connection = DriverManager.getConnection(BANCO, USER, SENHA);
 				connection.setAutoCommit(false);
 			}

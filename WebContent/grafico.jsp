@@ -94,7 +94,7 @@
 					data: {
 						labels: nomesFormatado.split(','),
 						datasets: [{
-							label: "Média da Pontualidade dos professores.",
+							label: "Média de Pontualidade",
 							backgroundColor: [
 				                'rgba(255, 99, 132, 0.7)',
 				                'rgba(54, 162, 235, 0.7)',
@@ -155,7 +155,7 @@
 			data: {
 				labels: nomesFormatado.split(','),
 				datasets: [{
-					label: "Média da Pontualidade dos professores.",
+					label: "Média de Pontualidade.",
 					backgroundColor: [
 		                'rgba(255, 99, 132, 0.7)',
 		                'rgba(54, 162, 235, 0.7)',
@@ -203,7 +203,7 @@
 			data: {
 				labels: nomesFormatado.split(','),
 				datasets: [{
-					label: "Média da Clareza dos professores.",
+					label: "Média de Clareza.",
 					backgroundColor: [
 		                'rgba(255, 99, 132, 0.7)',
 		                'rgba(54, 162, 235, 0.7)',
@@ -251,7 +251,7 @@
 			data: {
 				labels: nomesFormatado.split(','),
 				datasets: [{
-					label: "Média do método de avaliação dos professores.",
+					label: "Média do Método de avaliação.",
 					backgroundColor: [
 		                'rgba(255, 99, 132, 0.7)',
 		                'rgba(54, 162, 235, 0.7)',
@@ -299,7 +299,7 @@
 			data: {
 				labels: nomesFormatado.split(','),
 				datasets: [{
-					label: "Média do conhecimento dos professores.",
+					label: "Média de conhecimento",
 					backgroundColor: [
 		                'rgba(255, 99, 132, 0.7)',
 		                'rgba(54, 162, 235, 0.7)',

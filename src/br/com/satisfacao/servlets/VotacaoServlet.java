@@ -12,11 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
+
 import br.com.satisfacao.dao.DaoProfessor;
 import br.com.satisfacao.dao.DaoVotacao;
 import br.com.satisfacao.models.Aluno;
 import br.com.satisfacao.models.Professor;
 import br.com.satisfacao.models.Votacao;
+import br.com.satisfacao.util.JsonManager;
 
 
 @WebServlet("/votacao")
@@ -119,10 +122,10 @@ public class VotacaoServlet extends HttpServlet {
 		case "mediaProfessor":
 			view = false;
 			List<Professor> profs = dao.listarProfessoresAtivos();
-			List<String> nomes = new ArrayList<String>();
-			List<Double> mediaProfs = new ArrayList<Double>();
 			String json = "";
 			String inicio = "[", fim = "]";
+			JSONObject jsonObj = new JsonManager().JsonGeneratorProfessor(profs);
+			System.out.println(jsonObj.toString());
 			for (Professor prof : profs) {
 				List<Double> medias = dao.mediaProfessor(prof);
 				json += "{\"nome\": \""+prof.getNome()+"\", \"media_pont\": "+medias.get(0)+", \"media_cla\": "+medias.get(1)+", \"media_mtd\": "+medias.get(2)+", \"media_conhe\": "+medias.get(3)+"},";
@@ -130,7 +133,10 @@ public class VotacaoServlet extends HttpServlet {
 			int tamanhoJson = json.length();
 			String JsonFormatado = json.substring(0, tamanhoJson -1);
 			response.getWriter().append(inicio+JsonFormatado+fim);
-			
+			break;
+		case "totalVotos":
+			view = false;
+			break;
 		}
 		if(dispatcher != null && view) {
 			dispatcher.forward(request, response);

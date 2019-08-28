@@ -47,10 +47,9 @@ public class IdentificacaoServlet extends HttpServlet {
 		}
 		
 		if(retorno == "1") {
-			aluno.setBl_sit(false);
+			aluno = dao.buscarAluno(aluno);
 			HttpSession session = request.getSession();
-			session.removeAttribute("aluno");
-			session.setAttribute("aluno", validacao);
+			session.setAttribute("aluno", aluno);
 		}
 		
 		response.getWriter().write(retorno);

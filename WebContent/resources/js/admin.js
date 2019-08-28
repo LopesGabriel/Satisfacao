@@ -8,25 +8,29 @@ $(document).ready(function(){
 			$body.addClass("loading");
 		},
 		success: function(rs){
-			var count = Object.keys(rs).length;
-			for(var i = 0; i < count; i++){
-				var cor;
-				var title;
-				if(rs[i].sit == true){
-					cor = "text-success";
-					title = "Desabilitar professor";
-				}else{
-					cor = "text-muted";
-					title = "Ativar professor";
+			try{
+				var count = Object.keys(rs).length;
+				for(var i = 0; i < count; i++){
+					var cor;
+					var title;
+					if(rs[i].sit == true){
+						cor = "text-success";
+						title = "Desabilitar professor";
+					}else{
+						cor = "text-muted";
+						title = "Ativar professor";
+					}
+					var tr = '<tr>'+
+								'<td>'+rs[i].nome+'</td>'+
+								'<td>'+rs[i].matricula+'</td>'+
+								'<td>'+rs[i].disciplina+'</td>'+
+								'<td class="text-center"><a href="#" class="text-decoration-none '+cor+'" data-toggle="tooltip" data-placement="top" title="'+title+'" '+
+								'onclick="situacao('+rs[i].id+')"><i class="fas fa-user"></i></a></td>'+
+							'</tr>';
+					$('#professores').append(tr);
 				}
-				var tr = '<tr>'+
-							'<td>'+rs[i].nome+'</td>'+
-							'<td>'+rs[i].matricula+'</td>'+
-							'<td>'+rs[i].disciplina+'</td>'+
-							'<td class="text-center"><a href="#" class="text-decoration-none '+cor+'" data-toggle="tooltip" data-placement="top" title="'+title+'" '+
-							'onclick="situacao('+rs[i].id+')"><i class="fas fa-user"></i></a></td>'+
-						'</tr>';
-				$('#professores').append(tr);
+			}catch(ex){
+				$body.removeClass("loading");
 			}
 		},
 		complete: function(){

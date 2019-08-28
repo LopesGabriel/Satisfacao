@@ -58,10 +58,6 @@
 						</table>
 					</div>	
 				</section>
-
-				<section class="page-section bg-light col-12">
-					<h1 class="text-center Roboto">Quem respondeu?</h1>
-				</section>
 			</div>
 		</div>
 		<!-- /#page-content-wrapper -->
