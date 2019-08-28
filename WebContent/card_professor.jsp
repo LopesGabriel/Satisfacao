@@ -19,8 +19,21 @@
 	<div id="perguntas_professor" class="card-body">
 		<h1 class="text-info text-center"><%= al.getNome() %>, selecione um professor!</h1>
 	</div>
-	<div class="card-footer text-muted text-center">
-	  Última avaliação em <b>12/08/2019 14:00</b>
+	<div id="ultimaAtt" class="card-footer text-muted text-center">
+	  
 	</div>
 </div>
+
+<script>
+acao = "ultimaAtt";
+$.ajax({
+	url: '/Satisfacao/votacao',
+	type: 'POST',
+	dataType: 'JSON',
+	data: {acao: acao},
+	success: function(rs){
+		$('#ultimaAtt').append("Ultima atualização: <b>" + rs.ultimaAv + " Segundos</b>");
+	}
+});
+</script>
 </html>

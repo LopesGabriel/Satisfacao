@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -42,8 +43,8 @@
 						<div id="chart-place" class="card-body">
 
 						</div>
-						<div class="card-footer text-muted text-center">
-						  Última atualização: 12/08/2019 14:00
+						<div id="ultimaAtt" class="card-footer text-muted text-center">
+						  
 						</div>
 					</div>
 				</div>
@@ -68,6 +69,18 @@
 	var media_conhe = [];
 	var canvas = '<canvas id="grafico" class="col-12"></canvas>';
 	$(document).ready(function(){
+		
+		acao = "ultimaAtt";
+		$.ajax({
+			url: '/Satisfacao/votacao',
+			type: 'POST',
+			dataType: 'JSON',
+			data: {acao: acao},
+			success: function(rs){
+				$('#ultimaAtt').append("Ultima atualização: " + rs.ultimaAv + " Segundos</b>");
+			}
+		});
+		
 		acao = "mediaProfessor";
 		var qtd = 0;
 		
@@ -119,7 +132,11 @@
 								display: true,
 								ticks: {
 									suggestedMin: 0,
-									beginAtZero: true
+									beginAtZero: true,
+									maxTicksLimit: 6,
+									stepSize: 6,
+									Min: 0,
+									Max: 5
 								}
 							}]
 						}

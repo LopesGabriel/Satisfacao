@@ -1,6 +1,7 @@
 package br.com.satisfacao.servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import br.com.satisfacao.models.Aluno;
 import br.com.satisfacao.models.Professor;
 import br.com.satisfacao.models.Votacao;
 import br.com.satisfacao.util.JsonManager;
+import br.com.satisfacao.util.UltimaAvaliacao;
 
 
 @WebServlet("/votacao")
@@ -39,6 +41,7 @@ public class VotacaoServlet extends HttpServlet {
 			response.getWriter().write("0");
 		}else {
 			request.setAttribute("professores", lista);
+			request.setAttribute("ultimaAv", UltimaAvaliacao.getUltimaAvaliacao());
 			String destino = "questionario.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(destino);
 			dispatcher.forward(request, response);
@@ -115,6 +118,7 @@ public class VotacaoServlet extends HttpServlet {
 			view = false;
 			if(resultado == "1") {
 				response.getWriter().write("1");
+				UltimaAvaliacao.atualizarAv();
 			}else {
 				response.getWriter().write("0");
 			}
@@ -134,8 +138,12 @@ public class VotacaoServlet extends HttpServlet {
 			String JsonFormatado = json.substring(0, tamanhoJson -1);
 			response.getWriter().append(inicio+JsonFormatado+fim);
 			break;
-		case "totalVotos":
+		case "ultimaAtt":
 			view = false;
+			JSONObject ultimaAtt = new JSONObject();
+			SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm ss");
+			ultimaAtt.put("ultimaAv", fmt.format(UltimaAvaliacao.getUltimaAvaliacao()));
+			response.getWriter().append(ultimaAtt.toString());
 			break;
 		}
 		if(dispatcher != null && view) {
