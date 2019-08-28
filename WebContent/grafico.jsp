@@ -77,7 +77,7 @@
 			dataType: 'JSON',
 			data: {acao: acao},
 			success: function(rs){
-				$('#ultimaAtt').append("Ultima atualização: " + rs.ultimaAv + " Segundos</b>");
+				$('#ultimaAtt').append("Ultima atualização: <b>" + rs.ultimaAv + " Segundos</b>");
 			}
 		});
 		
@@ -109,11 +109,11 @@
 						datasets: [{
 							label: "Média de Pontualidade",
 							backgroundColor: [
-				                'rgba(255, 99, 132, 0.7)',
-				                'rgba(54, 162, 235, 0.7)',
-				                'rgba(255, 206, 86, 0.7)',
-				                'rgba(75, 192, 192, 0.7)',
-				                'rgba(153, 102, 255, 0.7)'
+				                'rgba(255, 99, 132, 1)',
+				                'rgba(54, 162, 235, 1)',
+				                'rgba(255, 206, 86, 1)',
+				                'rgba(75, 192, 192, 1)',
+				                'rgba(153, 102, 255, 1)'
 				            ],
 							borderColor: [
 				                '#333',
@@ -133,11 +133,11 @@
 								ticks: {
 									suggestedMin: 0,
 									beginAtZero: true,
-									maxTicksLimit: 6,
-									stepSize: 6,
+									suggestedMax: 5,
+									stepSize: 1,
 									Min: 0,
 									Max: 5
-								}
+								},
 							}]
 						}
 					}
@@ -174,11 +174,11 @@
 				datasets: [{
 					label: "Média de Pontualidade.",
 					backgroundColor: [
-		                'rgba(255, 99, 132, 0.7)',
-		                'rgba(54, 162, 235, 0.7)',
-		                'rgba(255, 206, 86, 0.7)',
-		                'rgba(75, 192, 192, 0.7)',
-		                'rgba(153, 102, 255, 0.7)'
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)',
+		                'rgba(75, 192, 192, 1)',
+		                'rgba(153, 102, 255, 1)'
 		            ],
 					borderColor: [
 		                '#333',
@@ -197,7 +197,11 @@
 						display: true,
 						ticks: {
 							suggestedMin: 0,
-							beginAtZero: true
+							beginAtZero: true,
+							suggestedMax: 5,
+							stepSize: 1,
+							Min: 0,
+							Max: 5
 						}
 					}]
 				}
@@ -222,11 +226,11 @@
 				datasets: [{
 					label: "Média de Clareza.",
 					backgroundColor: [
-		                'rgba(255, 99, 132, 0.7)',
-		                'rgba(54, 162, 235, 0.7)',
-		                'rgba(255, 206, 86, 0.7)',
-		                'rgba(75, 192, 192, 0.7)',
-		                'rgba(153, 102, 255, 0.7)'
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)',
+		                'rgba(75, 192, 192, 1)',
+		                'rgba(153, 102, 255, 1)'
 		            ],
 					borderColor: [
 		                '#333',
@@ -245,7 +249,11 @@
 						display: true,
 						ticks: {
 							suggestedMin: 0,
-							beginAtZero: true
+							beginAtZero: true,
+							suggestedMax: 5,
+							stepSize: 1,
+							Min: 0,
+							Max: 5
 						}
 					}]
 				}
@@ -270,11 +278,11 @@
 				datasets: [{
 					label: "Média do Método de avaliação.",
 					backgroundColor: [
-		                'rgba(255, 99, 132, 0.7)',
-		                'rgba(54, 162, 235, 0.7)',
-		                'rgba(255, 206, 86, 0.7)',
-		                'rgba(75, 192, 192, 0.7)',
-		                'rgba(153, 102, 255, 0.7)'
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)',
+		                'rgba(75, 192, 192, 1)',
+		                'rgba(153, 102, 255, 1)'
 		            ],
 					borderColor: [
 		                '#333',
@@ -293,7 +301,11 @@
 						display: true,
 						ticks: {
 							suggestedMin: 0,
-							beginAtZero: true
+							beginAtZero: true,
+							suggestedMax: 5,
+							stepSize: 1,
+							Min: 0,
+							Max: 5
 						}
 					}]
 				}
@@ -318,11 +330,11 @@
 				datasets: [{
 					label: "Média de conhecimento",
 					backgroundColor: [
-		                'rgba(255, 99, 132, 0.7)',
-		                'rgba(54, 162, 235, 0.7)',
-		                'rgba(255, 206, 86, 0.7)',
-		                'rgba(75, 192, 192, 0.7)',
-		                'rgba(153, 102, 255, 0.7)'
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)',
+		                'rgba(75, 192, 192, 1)',
+		                'rgba(153, 102, 255, 1)'
 		            ],
 					borderColor: [
 		                '#333',
@@ -341,7 +353,11 @@
 						display: true,
 						ticks: {
 							suggestedMin: 0,
-							beginAtZero: true
+							beginAtZero: true,
+							suggestedMax: 5,
+							stepSize: 1,
+							Min: 0,
+							Max: 5
 						}
 					}]
 				}

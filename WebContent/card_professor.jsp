@@ -32,7 +32,7 @@ $.ajax({
 	dataType: 'JSON',
 	data: {acao: acao},
 	success: function(rs){
-		$('#ultimaAtt').append("Ultima atualização: <b>" + rs.ultimaAv + " Segundos</b>");
+		$('#ultimaAtt').append("Ultima atualização: <b>" + rs.ultimaAv + " Segundos></b>");
 	}
 });
 </script>
